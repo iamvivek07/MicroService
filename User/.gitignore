@@ -31,3 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+
+### adding application property file into it ###
+**/src/main/resources/application.yml
+.gitignore
+
