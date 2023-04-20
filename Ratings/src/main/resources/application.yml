@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/microservice
     username: postgres
-    password: vivek9087
+    password: 
     driver-class-name: org.postgresql.Driver
 
   jpa:
