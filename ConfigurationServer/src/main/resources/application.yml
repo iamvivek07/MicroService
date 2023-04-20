@@ -1,0 +1,17 @@
+server:
+  port: 8085
+spring:
+  application:
+    name: CONFIG-SERVER
+  cloud:
+    config:
+      server:
+       git:
+          uri: https://github.com/iamvivek07/GitConfig
+          clone-on-start: true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9090/eureka
+
+

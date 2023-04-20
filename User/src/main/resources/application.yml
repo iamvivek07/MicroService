@@ -1,0 +1,56 @@
+spring:
+  application:
+    name: User
+  datasource:
+    url: jdbc:mysql://localhost:3306/microservice
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: vivek9087
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  config:
+    import: optional:configserver:http://localhost:8085
+
+server:
+  port: 8081
+
+
+#eureka:
+#  instance:
+#    prefer-ip-address: true
+#  client:
+#    fetch-registry: true
+#    register-with-eureka: true
+#    service-url:
+#      defaultZone: http://localhost:9090/eureka
+
+#Actuator configuration
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: health
+
+#Resilience4j configuration
+resilience4j:
+  circuitbreaker:
+    instances:
+      ratingHotelCircuit:
+        registerHealthIndicator: true
+        eventConsumerBufferSize: 10
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 5
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 10
+        permittedNumberOfCallsInHalfOpenState: 5
+        slidingWindowSize: 10
+        slidingWindowType: COUNT_BASED
